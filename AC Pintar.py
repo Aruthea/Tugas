@@ -8,7 +8,7 @@ from skfuzzy import control as ctrl
 #set variable yang akan digunakan
 #variable input = Antecedent
 suhu_udara=ctrl.Antecedent(np.arange(0,51,1), 'Suhu Udara')
-kelembaban=ctrl.Antecedent(np.arange(0,71,1), 'Kelembaban Udara')
+kelembaban=ctrl.Antecedent(np.arange(0,81,1), 'Kelembaban Udara')
 #variable output = Consequent
 angin=ctrl.Consequent(np.arange(0,106,1), 'Kecepatan Angin')
 
@@ -18,13 +18,18 @@ suhu_udara['dingin']=fuzz.trimf(suhu_udara.universe,[0,10,20])
 suhu_udara['normal']=fuzz.trimf(suhu_udara.universe,[15,25,35])
 suhu_udara['panas']=fuzz.trimf(suhu_udara.universe,[30,40,50])
 
-kelembaban['kering']=fuzz.trimf(kelembaban.universe,[0,10,20])
-kelembaban['normal']=fuzz.trimf(kelembaban.universe,[15,32.5,50])
-kelembaban['basah']=fuzz.trimf(kelembaban.universe,[40,55,70])
+kelembaban['kering']=fuzz.trimf(kelembaban.universe,[0,15,30])
+kelembaban['normal']=fuzz.trimf(kelembaban.universe,[25,40,55])
+kelembaban['basah']=fuzz.trimf(kelembaban.universe,[50,65,80])
 
 angin['lambat']=fuzz.trimf(angin.universe,[0,22.5,45])
 angin['normal']=fuzz.trimf(angin.universe,[30,52.5,75])
 angin['kencang']=fuzz.trimf(angin.universe,[60,88.5,105])
+
+#view tiap variable dalam bentuk grafik/plot
+suhu_udara.view()
+kelembaban.view()
+angin.view()
 
 #buat rule-rule untuk programnya
 #jika [input][x] & [input][y], maka [output][z]
